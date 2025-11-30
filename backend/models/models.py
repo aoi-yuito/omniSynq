@@ -1,0 +1,32 @@
+from tortoise import fields, Model
+from datetime import datetime, timezone
+from tortoise.contrib.pydantic import pydantic_model_creator
+
+
+class User(Model):
+    uuid = fields.BigIntField(primary_key=True, index=True)
+    user_name = fields.CharField(max_length=60, null=False)
+    email = fields.CharField(max_length=300, null=False, unique=True)
+    pass_key = fields.CharField(max_length=20, null=False, unique=False)
+    is_verified = fields.BooleanField(default=False)
+    phone_number = fields.CharField(max_length=11, null=False, unique=True)
+    joined_at = fields.DatetimeField(default=datetime.now(timezone.utc))
+
+
+class Business(Model):
+    uuid = fields.BigIntField(primary_key=True, index=True)
+    name = fields.CharField(max_length=120, null=False, unique=True)
+    city = fields.CharField(max_length=60, null=False, default="Unspecified")
+    address = fields.CharField(max_length=600, null=False, default="Unspecified")
+    description = fields.TextField(null=True)
+    #logo = fields.CharField(max_length=120, null=False, default="logo.jpg")
+    created_at = fields.DatetimeField(default=datetime.now(timezone.utc))
+    owner = fields.ForeignKeyField("models.User", related_name="business")
+
+
+pydantic_user = pydantic_model_creator(User, name="User", exclude=("is_verified",))
+pydantic_userIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True, exclude=("is_verified", "joined_at",))
+pydantic_userOut = pydantic_model_creator(User, name="UserOut", exclude=("pass_key",))
+
+pydantic_business = pydantic_model_creator(Business, name="Business")
+pydantic_businessIn = pydantic_model_creator(Business, name="BusinessIn", exclude_readonly=True, exclude=("created_at",))

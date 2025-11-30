@@ -1,4 +1,4 @@
-rom os import getenv
+from os import getenv
 from typing import Final
 
 from dotenv import load_dotenv
