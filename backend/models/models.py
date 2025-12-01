@@ -6,19 +6,24 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 class User(Model):
     uuid = fields.BigIntField(primary_key=True, index=True)
     user_name = fields.CharField(max_length=60, null=False)
+    full_name = fields.CharField(max_length=100, null=False)
     email = fields.CharField(max_length=300, null=False, unique=True)
     pass_key = fields.CharField(max_length=20, null=False, unique=False)
     is_verified = fields.BooleanField(default=False)
-    phone_number = fields.CharField(max_length=11, null=False, unique=True)
+    phone_number = fields.CharField(max_length=30, null=False, unique=True)
     joined_at = fields.DatetimeField(default=datetime.now(timezone.utc))
 
 
 class Business(Model):
     uuid = fields.BigIntField(primary_key=True, index=True)
     name = fields.CharField(max_length=120, null=False, unique=True)
+    categories = fields.CharField(max_length=255, null=True)
     city = fields.CharField(max_length=60, null=False, default="Unspecified")
     address = fields.CharField(max_length=600, null=False, default="Unspecified")
+    email = fields.CharField(max_length=255, null=True)
+    website = fields.CharField(max_length=255, null=True)
     description = fields.TextField(null=True)
+    phone_number = fields.CharField(max_length=30, null=False, unique=True)
     #logo = fields.CharField(max_length=120, null=False, default="logo.jpg")
     created_at = fields.DatetimeField(default=datetime.now(timezone.utc))
     owner = fields.ForeignKeyField("models.User", related_name="business")
