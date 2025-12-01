@@ -100,7 +100,7 @@ class ApiServer:
         if reload:
             register_tortoise(
                 self.app,
-                db_url="sqlite://database.sqlite3",
+                db_url=f"sqlite://{self.directory}/data/dynamic/database.sqlite3",
                 modules={"models": ["backend.models.models"]},
                 generate_schemas=True,
                 add_exception_handlers=True
@@ -116,7 +116,7 @@ class ApiServer:
         else:
             register_tortoise(
                 self.app,
-                db_url="sqlite://database.sqlite3",
+                db_url=f"sqlite://{self.directory}/data/dynamic/database.sqlite3",
                 modules={"models": ["backend.models.models"]},
                 generate_schemas=True,
                 add_exception_handlers=True
