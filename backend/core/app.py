@@ -107,7 +107,10 @@ class ApiServer:
 
         @self.app.post("/question")
         async def generate_answer(q: str):
-            ...
+            conn_string = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}/{DB_NAME}"
+
+            # Create an async SQLAlchemy engine
+            engine = create_async_engine(conn_string)
 
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
