@@ -15,7 +15,7 @@ from backend.db import Database
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
 #from langchain.agents import AgentType
-from langchain.sql_database import SQLDatabase
+from langchain_community.utilities import SQLDatabase
 from sqlalchemy.ext.asyncio import create_async_engine
 
 DB_USER = "postgres.tceyomvpyfvtcmxwnate"
