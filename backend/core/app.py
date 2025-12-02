@@ -17,8 +17,6 @@ from langchain.agents import create_sql_agent
 from langchain.agents.agent_types import AgentType
 from langchain.sql_database import SQLDatabase
 from sqlalchemy.ext.asyncio import create_async_engine
-from asyncpg import Connection
-from google.cloud.sql.connector import Connector
 
 DB_USER = "postgres.tceyomvpyfvtcmxwnate"
 DB_PASSWORD = "Ehou@waso@5667"
