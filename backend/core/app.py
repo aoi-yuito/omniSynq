@@ -92,6 +92,10 @@ class ApiServer:
         async def read_root():
             return {"Hello": "World", "api_version": self.app.version}
 
+        @self.app.post("/question")
+        async def generate_answer(q: str):
+            ...
+
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
             x = await self.db.field(f'SELECT {item_id};')
