@@ -14,9 +14,7 @@ from backend.db import Database
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
-#from langchain.agents import AgentType
 from langchain_community.utilities import SQLDatabase
-from sqlalchemy.ext.asyncio import create_async_engine
 
 DB_USER = "postgres.tceyomvpyfvtcmxwnate"
 DB_PASSWORD = "Ehou@waso@5667"
@@ -105,7 +103,7 @@ class ApiServer:
 
         @self.app.post("/question")
         async def generate_answer(q: str):
-            conn_string = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
+            conn_string = f"postgresql+asyncpg://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
             # Create an async SQLAlchemy engine
             #engine = create_async_engine(conn_string)
