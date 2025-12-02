@@ -12,6 +12,19 @@ from .routes.v1 import *
 from backend import Config, models, utils
 from backend.db import Database
 
+from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain.agents import create_sql_agent
+from langchain.agents.agent_types import AgentType
+from langchain.sql_database import SQLDatabase
+from sqlalchemy.ext.asyncio import create_async_engine
+from asyncpg import Connection
+from google.cloud.sql.connector import Connector
+
+DB_USER = "your_user"
+DB_PASSWORD = "your_password"
+DB_HOST = "localhost" # or your Cloud SQL instance connection name if using Google Cloud
+DB_NAME = "your_database"
+
 class ApiServer:
     def __init__(self, directory):
         # Step 1: Instantiate the FastAPI object
