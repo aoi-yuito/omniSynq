@@ -17,9 +17,9 @@ from langchain_community.agent_toolkits.sql.base import create_sql_agent
 from langchain_community.utilities import SQLDatabase
 from sqlalchemy import create_engine
 
-DB_USER = "postgres.tceyomvpyfvtcmxwnate"
+DB_USER = "postgres.xegxgltddasgvntcbvjx"
 DB_PASSWORD = "EhouWaso5667"
-DB_HOST = "aws-1-ap-southeast-2.pooler.supabase.com" # or your Cloud SQL instance connection name if using Google Cloud
+DB_HOST = "aws-1-ap-southeast-1.pooler.supabase.com" # or your Cloud SQL instance connection name if using Google Cloud
 DB_NAME = "postgres"
 
 class ApiServer:
