@@ -120,6 +120,7 @@ class ApiServer:
             agent_executor = create_sql_agent(
                 llm=llm,
                 db=db,
+                handle_parsing_errors=True,
                 #agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION, # A good default agent type
                 verbose=True
             )
