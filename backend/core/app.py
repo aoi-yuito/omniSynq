@@ -131,6 +131,17 @@ class ApiServer:
             question = "How many users are in the users table?"
             print(f"User Question: {q}")
 
+            try:
+                # Run the agent asynchronously
+                response = await agent_executor.ainvoke(question)
+                print(f"AI Answer: {response['output']}")
+                sss = response['output']
+            except Exception as e:
+                print(f"An error occurred: {e}")
+            finally:
+                # Close the database connection pool
+                await engine.dispose()
+
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
             x = await self.db.field(f'SELECT {item_id};')
