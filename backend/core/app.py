@@ -15,6 +15,7 @@ from backend.db import Database
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
 from langchain_community.utilities import SQLDatabase
+from sqlalchemy import create_engine
 
 DB_USER = "postgres.tceyomvpyfvtcmxwnate"
 DB_PASSWORD = "Ehou@waso@5667"
@@ -106,13 +107,13 @@ class ApiServer:
             conn_string = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
             # Create an async SQLAlchemy engine
-            #engine = create_async_engine(conn_string)
+            engine = create_engine(conn_string)
 
             llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0, google_api_key="AIzaSyBt01WGRJXBv4E_K-J4xLpCG_xYh6dTccI")
 
             # 2. Establish asynchronous database connection using SQLAlchemy's async engine
 
-            db = SQLDatabase.from_uri(conn_string)
+            db = SQLDatabase(engine)
 
             # 3. Create a SQL agent
             # The agent will use the LLM to generate and execute SQL queries based on the user's natural language question
