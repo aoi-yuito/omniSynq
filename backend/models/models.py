@@ -28,6 +28,18 @@ class Business(Model):
     created_at = fields.DatetimeField(default=datetime.now(timezone.utc))
     owner = fields.ForeignKeyField("models.User", related_name="business")
 
+class ChurnPredictor(Model):
+    uuid = fields.BigIntField(primary_key=True, index=True)
+    database_provider = fields.CharField(max_length=60, null=True)
+    database_user = fields.CharField(max_length=120, null=True)
+    database_name = fields.CharField(max_length=120, null=True)
+    database_host = fields.CharField(max_length=255, null=True)
+    database_port = fields.CharField(max_length=6, null=True)
+    database_password = fields.CharField(max_length=255, unique=True, null=True)
+
+    #database_driver = fields.CharField(max_length=12, null=True)
+    #database_cluster_name = fields.CharField(max_length=120, null=True)
+
 
 pydantic_user = pydantic_model_creator(User, name="User", exclude=("is_verified",))
 pydantic_userIn = pydantic_model_creator(User, name="UserIn", exclude_readonly=True, exclude=("is_verified", "joined_at",))
@@ -35,3 +47,6 @@ pydantic_userOut = pydantic_model_creator(User, name="UserOut", exclude=("pass_k
 
 pydantic_business = pydantic_model_creator(Business, name="Business")
 pydantic_businessIn = pydantic_model_creator(Business, name="BusinessIn", exclude_readonly=True, exclude=("created_at",))
+
+pydantic_churnPredictor = pydantic_model_creator(ChurnPredictor, name="ChurnPredictor")
+pydantic_churnPredictorIn = pydantic_model_creator(ChurnPredictor, name="ChurnPredictorIn", exclude_readonly=True)

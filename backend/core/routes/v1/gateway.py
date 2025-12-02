@@ -58,9 +58,10 @@ class Gateway:
             #print(f"Wrong password verification successful: {is_correct_wrong}")
 
             await self.app.db.execute(
-                "INSERT INTO users (U_UUID, USR_NAME, EMAIL, PASS_KEY, PHONE) VALUES ($1, $2, $3, $4, $5)",
+                "INSERT INTO users (U_UUID, USR_NAME, FULL_NAME, EMAIL, PASS_KEY, PHONE) VALUES ($1, $2, $3, $4, $5, $6)",
                 uuid_of_user,
                 user_info["user_name"],
+                user_info["full_name"],
                 user_info["email"],
                 hashed.decode("utf-8"),
                 user_info["phone_number"]

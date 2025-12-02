@@ -1,5 +1,4 @@
 import jwt
-
 from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
 
 EMAIL_VERIFICATION_TEMPLATE = """
@@ -202,7 +201,7 @@ class EmailConstructor:
         email_template = EMAIL_VERIFICATION_TEMPLATE.format(
             user_name=instance["user_name"],
             verification_code=verification_token,
-            verification_url=f"https://filthy-cauldron-6q6pxgq4wg2rppr-8000.app.github.dev/api/verify/{verification_token}"
+            verification_url=f"https://filthy-cauldron-6q6pxgq4wg2rppr-8000.app.github.dev/api/v1/gateway/verify/{verification_token}"
         )
 
         message = MessageSchema(

@@ -6,7 +6,7 @@ from fastapi import status, Depends
 from fastapi.exceptions import HTTPException
 from fastapi.security import OAuth2PasswordBearer
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="api/v1/gateway/login")
 
 class AuthConstructor:
     def __init__(self, app):

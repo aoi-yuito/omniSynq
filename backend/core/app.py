@@ -8,7 +8,7 @@ from fastapi.templating import Jinja2Templates
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from tortoise.contrib.fastapi import register_tortoise
 
-from .routes.v1 import Gateway, FileUpload, User
+from .routes.v1 import *
 from backend import Config, models, utils
 from backend.db import Database
 
@@ -30,6 +30,7 @@ class ApiServer:
             name="static"
         )
 
+        self.utils = utils
         self.config = Config
         self.models = models
         self.jinja2template = Jinja2Templates(
@@ -64,6 +65,12 @@ class ApiServer:
 
         upload_router = FileUpload(self).router
         self.app.include_router(upload_router)
+
+        business_router = Business(self).router
+        self.app.include_router(business_router)
+
+        churnPredictor_router = ChurnPredictor(self).router
+        self.app.include_router(churnPredictor_router)
 
     def add_routes(self):
         @self.app.on_event("startup")
