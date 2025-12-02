@@ -14,7 +14,7 @@ from backend.db import Database
 
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.agent_toolkits.sql.base import create_sql_agent
-from langchain.agents.agent_types import AgentType
+from langchain.agents import AgentType
 from langchain.sql_database import SQLDatabase
 from sqlalchemy.ext.asyncio import create_async_engine
 
