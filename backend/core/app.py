@@ -135,14 +135,14 @@ class ApiServer:
                 # Run the agent asynchronously
                 response = await agent_executor.ainvoke(question)
                 print(f"AI Answer: {response['output']}")
-                sss = response['output']
+                return {"response": response['output']}
             except Exception as e:
                 print(f"An error occurred: {e}")
             finally:
                 # Close the database connection pool
                 engine.dispose()
 
-                return {"response": sss}
+                print("done!")
 
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
