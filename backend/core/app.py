@@ -123,10 +123,13 @@ class ApiServer:
                 #agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION, # A good default agent type
                 verbose=True
             )
+            print(1)
 
             # 4. Chat with the database
             question = "How many users are in the users table?"
             print(f"User Question: {q}")
+
+            print(2)
 
             try:
                 # Run the agent asynchronously
