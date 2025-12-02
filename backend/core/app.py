@@ -131,7 +131,7 @@ class ApiServer:
 
             try:
                 # Run the agent asynchronously
-                response = await agent_executor.ainvoke(question)
+                response = await agent_executor.ainvoke(q)
                 print(f"AI Answer: {response['output']}")
                 sss = response['output']
             except Exception as e:

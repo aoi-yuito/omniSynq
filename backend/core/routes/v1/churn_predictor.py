@@ -23,7 +23,7 @@ class ChurnPredictor:
 
     def add_post_routes(self):
         @self.router.post("/subscribeWith/")
-        async def subscribe_churn_predictor_module(bs_id: str, db: self.app.models.pydantic_churnPredictorIn, user: Depends(self.app.auth.get_current_user)):
+        async def subscribe_churn_predictor_module(bs_id: str, db: self.app.models.pydantic_churnPredictorIn, user = Depends(self.app.auth.get_current_user)):
             uuid_of_db = self.app.generate_id()
             db_info = db.dict(exclude_unset=True)
             COMPATIBLE_DATABASES = ["PostgreSQL", "OracleDB", "MySQL", "Microsoft SQL Server", "MongoDB", "MariaDB", "IBM DB2", "ElasticSearch", "Redis"]
