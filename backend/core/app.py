@@ -86,16 +86,16 @@ class ApiServer:
         @self.app.on_event("startup")
         async def startup():
             print("Connecting to Database...")
-            await self.db.connect()
+            #await self.db.connect()
             print("Connected to database.")
 
-            self.scheduler.start()
-            print(f"Scheduler started ({len(self.scheduler.get_jobs()):,} job(s)).")
+            #self.scheduler.start()
+            #print(f"Scheduler started ({len(self.scheduler.get_jobs()):,} job(s)).")
 
         @self.app.on_event("shutdown")
         async def shutdown():
             print("Closing database...")
-            await self.db.close()
+            #await self.db.close()
             print("Closed database connection.")
 
         @self.app.get("/")
