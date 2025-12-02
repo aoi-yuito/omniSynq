@@ -20,10 +20,10 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from asyncpg import Connection
 from google.cloud.sql.connector import Connector
 
-DB_USER = "postgres.xegxgltddasgvntcbvjx"
-DB_PASSWORD = "your_password"
-DB_HOST = "aws-1-ap-southeast-1.pooler.supabase.com" # or your Cloud SQL instance connection name if using Google Cloud
-DB_NAME = "your_database"
+DB_USER = "postgres.tceyomvpyfvtcmxwnate"
+DB_PASSWORD = "Ehou@waso@5667"
+DB_HOST = "aws-1-ap-southeast-2.pooler.supabase.com" # or your Cloud SQL instance connection name if using Google Cloud
+DB_NAME = "postgres"
 
 class ApiServer:
     def __init__(self, directory):
