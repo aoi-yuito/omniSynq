@@ -112,6 +112,25 @@ class ApiServer:
             # Create an async SQLAlchemy engine
             engine = create_async_engine(conn_string)
 
+            llm = ChatGoogleGenerativeAI(model="gemini-3-pro-preview", temperature=0)
+
+    # 2. Establish asynchronous database connection using SQLAlchemy's async engine
+    engine = await get_async_connection()
+    db = SQLDatabase(engine)
+
+    # 3. Create a SQL agent
+    # The agent will use the LLM to generate and execute SQL queries based on the user's natural language question
+    agent_executor = create_sql_agent(
+        llm=llm,
+        db=db,
+        agent_type=AgentType.ZERO_SHOT_REACT_DESCRIPTION, # A good default agent type
+        verbose=True
+    )
+
+            # 4. Chat with the database
+            question = "How many users are in the users table?"
+            print(f"User Question: {q}")
+
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
             x = await self.db.field(f'SELECT {item_id};')
