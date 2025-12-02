@@ -104,7 +104,7 @@ class ApiServer:
 
         @self.app.post("/question")
         async def generate_answer():
-            conn_string = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
+            conn_string = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
             # Create an async SQLAlchemy engine
             engine = create_engine(conn_string)
