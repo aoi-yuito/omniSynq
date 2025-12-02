@@ -110,7 +110,7 @@ class ApiServer:
             # Create an async SQLAlchemy engine
             engine = create_async_engine(conn_string)
 
-            llm = ChatGoogleGenerativeAI(model="gemini-3-pro-preview", temperature=0)
+            llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0, google_api_key="AIzaSyBt01WGRJXBv4E_K-J4xLpCG_xYh6dTccI")
 
             # 2. Establish asynchronous database connection using SQLAlchemy's async engine
 
