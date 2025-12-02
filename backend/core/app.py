@@ -108,13 +108,13 @@ class ApiServer:
             conn_string = f"postgresql://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
             # Create an async SQLAlchemy engine
-            engine = create_async_engine(conn_string)
+            #engine = create_async_engine(conn_string)
 
             llm = ChatGoogleGenerativeAI(model="gemini-pro", temperature=0, google_api_key="AIzaSyBt01WGRJXBv4E_K-J4xLpCG_xYh6dTccI")
 
             # 2. Establish asynchronous database connection using SQLAlchemy's async engine
 
-            db = SQLDatabase(engine)
+            db = SQLDatabase.from_uri(conn_string)
 
             # 3. Create a SQL agent
             # The agent will use the LLM to generate and execute SQL queries based on the user's natural language question
