@@ -126,7 +126,7 @@ class ApiServer:
             print(1)
 
             # 4. Chat with the database
-            question = "How many users are in the users table?"
+            question = "is there any users are in the users table? or there is no user table"
             print(f"User Question: {question}")
 
             print(2)
