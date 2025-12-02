@@ -142,6 +142,8 @@ class ApiServer:
                 # Close the database connection pool
                 await engine.dispose()
 
+                return {"response": sss}
+
         @self.app.get("/api/items/{item_id}")
         async def read_item(item_id: int):
             x = await self.db.field(f'SELECT {item_id};')
