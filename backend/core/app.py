@@ -103,7 +103,7 @@ class ApiServer:
             return {"Hello": "World", "api_version": self.app.version}
 
         @self.app.post("/question")
-        async def generate_answer(q: str):
+        async def generate_answer():
             conn_string = f"postgresql+psycopg2://{DB_USER}:{DB_PASSWORD}@{DB_HOST}:5432/{DB_NAME}"
 
             # Create an async SQLAlchemy engine
@@ -127,13 +127,13 @@ class ApiServer:
 
             # 4. Chat with the database
             question = "How many users are in the users table?"
-            print(f"User Question: {q}")
+            print(f"User Question: {question}")
 
             print(2)
 
             try:
                 # Run the agent asynchronously
-                response = await agent_executor.ainvoke(q)
+                response = await agent_executor.ainvoke(question)
                 print(f"AI Answer: {response['output']}")
                 sss = response['output']
             except Exception as e:
