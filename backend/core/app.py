@@ -140,7 +140,7 @@ class ApiServer:
                 print(f"An error occurred: {e}")
             finally:
                 # Close the database connection pool
-                await engine.dispose()
+                engine.dispose()
 
                 return {"response": sss}
 
